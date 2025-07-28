@@ -9,12 +9,10 @@ const Header = () => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Deities', path: '/deities' },
-    { name: 'Services', path: '/services' },
-    { name: 'Events', path: '/events' },
-    { name: 'Gallery', path: '/gallery' },
-    { name: 'Donate', path: '/donate' },
+    { name: 'Donors', path: '/donors' },
+    { name: 'LandProjectDetails', path: '/landprojectdetails' },
     { name: 'Contact', path: '/contact' },
+    { name: 'Donate Now', path: '/donate' },
   ];
 
   return (
@@ -39,7 +37,7 @@ const Header = () => {
       </div>
 
       {/* Main Header */}
-      <header className="bg-white shadow sticky top-0 z-50">
+      <header className="bg-gradient-to-b from-orange-50 to-yellow-50 shadow sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           {/* Logo and Title */}
           <div className="flex items-center gap-4">
@@ -51,12 +49,16 @@ const Header = () => {
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex gap-6">
+          <nav className="hidden md:flex gap-12">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className="text-gray-700 font-medium hover:text-orange-600 transition duration-200"
+                className={`text-sm font-medium transition hover:text-orange-600 ${
+                  item.name === 'Donate Now'
+                    ? 'bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 shadow-md'
+                    : 'text-gray-700'
+                }`}
               >
                 {item.name}
               </Link>
@@ -80,8 +82,12 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className="text-gray-700 hover:text-orange-600 font-medium transition duration-200"
                   onClick={() => setIsMenuOpen(false)}
+                  className={`font-medium transition duration-200 ${
+                    item.name === 'Donate Now'
+                      ? 'bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 shadow-md text-center'
+                      : 'text-gray-700 hover:text-orange-600'
+                  }`}
                 >
                   {item.name}
                 </Link>
