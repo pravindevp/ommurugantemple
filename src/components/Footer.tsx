@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Facebook, Instagram, Youtube, Heart } from 'lucide-react';
+import BgImage from '../Asset/img/templelogo.png'; // Update your path if needed
 
 const Footer = () => {
   const quickLinks = [
@@ -29,7 +30,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">ॐ</span>
+                <img src={BgImage} alt="Temple Logo" className="w-16 h-16 object-contain" />
               </div>
               <div>
                 <h3 className="text-xl font-bold">Om Murugan Temple</h3>
@@ -37,21 +38,21 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              A sacred sanctuary dedicated to Lord Murugan, fostering spiritual growth, 
+              A sacred sanctuary dedicated to Lord Murugan, fostering spiritual growth,
               cultural preservation, and community unity in California.
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <MapPin className="text-orange-500" size={18} />
-                <span className="text-gray-300">1234 Temple Street, California, CA 90210</span>
+                <span className="text-gray-300">Roseville CA 95678</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="text-orange-500" size={18} />
-                <span className="text-gray-300">(555) 123-4567</span>
+                <span className="text-gray-300"></span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="text-orange-500" size={18} />
-                <span className="text-gray-300">info@ommurugantempleca.org</span>
+                <span className="text-gray-300"></span>
               </div>
             </div>
           </div>
@@ -62,7 +63,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a 
+                  <a
                     href={link.href}
                     className="text-gray-300 hover:text-orange-400 transition-colors duration-200"
                   >
@@ -74,7 +75,7 @@ const Footer = () => {
           </div>
 
           {/* Services */}
-          <div>
+          {/* <div>
             <h4 className="text-lg font-bold mb-6 text-orange-400">Our Services</h4>
             <ul className="space-y-3">
               {services.map((service, index) => (
@@ -88,7 +89,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Temple Hours & Social */}
           <div>
@@ -139,12 +140,12 @@ const Footer = () => {
               <a href="#" className="text-gray-400 hover:text-orange-400 transition-colors">
                 Terms of Service
               </a>
-              <span className="text-gray-600">|</span>
-              <div className="flex items-center text-gray-400">
+              {/* <span className="text-gray-600">|</span> */}
+              {/* <div className="flex items-center text-gray-400">
                 <span>Made with</span>
                 <Heart className="text-red-500 mx-1" size={16} />
                 <span>for our community</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

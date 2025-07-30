@@ -1,120 +1,206 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import templedesign from '../Asset/img/templedesign.png'; // Update your path if needed
+import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Heart, ShieldCheck, Users } from "lucide-react";
+import templedesign1 from "../Asset/img/backgound.png";
+import templedesign2 from "../Asset/img/temple_ai_2.png";
+import templedesign3 from "../Asset/img/murugan-malaysia-statue.jpg";
+import ChatBox from "./chatbox";
 
 const Home = () => {
+  const images = [templedesign1, templedesign2, templedesign3];
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
+    AOS.init({ duration: 1000, once: true });
   }, []);
 
-  const handleDonateClick = () => {
-    <li>
-      Zeffy: <a href="https://tinyurl.com/OMT-Land-donation" target="_blank" rel="noreferrer" className="text-blue-600 underline">OMT Land Donation</a>
-    </li>
+
+
+  // Auto slide
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    }, 40000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
   return (
-    <>
+    <div className="font-montserrat">
       {/* Hero Section */}
       <section
-        id="home"
-        className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
-      >
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${templedesign})` }}
-        ></div>
+        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-black mt-20 bg-cover bg-center transition-all duration-1000"
+        style={{ backgroundImage: `url(${images[currentIndex]})` }}
+      >        <img
+          src={images[currentIndex]}
+          alt="Temple"
+          className="absolute inset-0 object-center w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
-        <div className="relative z-10 text-center text-white px-6 md:px-10 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-4 drop-shadow-md" data-aos="zoom-in">
-            Welcome to
-            <span className="block text-amber-300">Om Murugan Temple</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-orange-100 font-light mb-4" data-aos="fade-up">
-            A Sacred Sanctuary of Lord Murugan in California
-          </p>
-          <p className="text-lg md:text-xl text-orange-50 mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-            Experience divine blessings, spiritual peace, and the rich traditions of Tamil Hindu culture in the heart of California.
-          </p>
+        {currentIndex === 0 && (
+          <div className="relative z-10 text-center text-white max-w-3xl px-6">
+            <h1
+              className="font-montserrat text-left text-5xl md:text-5xl font-extrabold mb-4 leading-snug bg-gradient-to-r from-orange-400 to-yellow-300 bg-clip-text text-transparent"
+              data-aos="fade-up"
+            >
+              Welcome to
+            </h1>
+            <h1
+              className="font-montserrat text-left text-5xl md:text-5xl font-extrabold mb-4 leading-snug bg-gradient-to-r from-orange-400 to-yellow-300 bg-clip-text text-transparent"
+              data-aos="fade-up"
+            >
+              Om Murugan Temple
+            </h1>
+            <p
+              className="text-lg md:text-xl text-left text-gray-200 mb-8"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              A sacred space preserving traditions and creating a modern
+              spiritual experience for generations.
+            </p>
 
-          <div className="flex flex-col md:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
-            <button className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-              Visit Temple
-            </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-orange-600 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 backdrop-blur-sm">
-              View Events
+            <button
+              onClick={() =>
+                window.open("https://tinyurl.com/OMT-Land-donation", "_blank")
+              }
+              className="bg-gradient-to-r from-red-600 to-orange-500 hover:scale-105 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg transition-all duration-300 flex items-center gap-2 mx-auto"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <Heart className="w-5 h-5" /> Donate via Zeffy
             </button>
           </div>
+        )}
+
+        {/* Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute top-1/2 left-6 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition duration-300"
+        >
+          ❮
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute top-1/2 right-6 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition duration-300"
+        >
+          ❯
+        </button>
+
+        {/* Dots */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+          {images.map((_, index) => (
+            <div
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`h-1 w-8 cursor-pointer transition-all duration-500 rounded-full ${currentIndex === index ? "bg-white" : "bg-gray-400/30"
+                }`}
+            />
+          ))}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-orange-50 to-transparent px-6 py-6 md:py-8" />
+
       </section>
 
       {/* Mission Section */}
-      <section className="py-24 bg-gradient-to-b from-orange-50 to-yellow-50">
-        <div className="container mx-auto px-6 md:px-10">
-          <div className="text-center mb-16" data-aos="fade-down">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Our Mission</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-600 mx-auto mb-6" />
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              The California OM Murugan Temple: A landmark offering a unique spiritual, cultural, and linguistic experience for Hindus worldwide.
+      <section className="py-24 bg-gradient-to-b from-white to-orange-50">
+        <div className="container mx-auto px-6 md:px-10 text-center" data-aos="fade-down">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6">
+            Our Mission
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12">
+            California OM Murugan Temple aims to provide a{" "}
+            <span className="text-orange-600 font-semibold">modern spiritual, cultural, and linguistic experience</span>{" "}
+            representing Hindus worldwide.
+          </p>
+
+          {/* Mission Card */}
+          <div className="bg-white/80 backdrop-blur-md rounded-2xl p-10 md:p-14 text-left max-w-4xl mx-auto shadow-lg hover:shadow-2xl transition">
+            <p className="text-gray-700 leading-relaxed mb-5">
+              OMT was established in 2019 to serve the growing Hindu community in
+              Roseville, Rocklin, and Lincoln. Recognized as a{" "}
+              <strong>non-profit organization</strong> by both the State of
+              California and IRS, our vision is to build a{" "}
+              <span className="text-orange-600 font-semibold">
+                Traditional Hindu Temple and Cultural Center
+              </span>
+              .
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-5">
+              With the blessings of the Almighty and the support of generous
+              donors, we have already achieved{" "}
+              <strong>30% of Phase-1 funding</strong>. Join us in{" "}
+              <span className="text-red-600 font-semibold">
+                building a landmark temple one brick at a time.
+              </span>
+            </p>
+            <p className="text-gray-800 font-medium mt-6 text-center">
+              “GIVING IS THE GREATEST ACT OF GRACE.”
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div className="space-y-6" data-aos="fade-right">
-              <h3 className="text-3xl font-bold text-gray-800">🌱 Our Beginning: A Community Vision</h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Every great journey begins with a single step. In 2019, a committed group came together to form the OMT board, drafting a formal constitution and planting the seeds for a spiritual sanctuary.
-              </p>
-            </div>
-            <div className="space-y-6" data-aos="fade-left">
-              <h3 className="text-3xl font-bold text-gray-800">✨ A Dream Takes Shape</h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                As the Hindu community grew across Placer County, so did the dream of a temple to preserve and pass on the rich traditions of Tamil Hindu culture to future generations.
-              </p>
-            </div>
-            <div className="space-y-6" data-aos="fade-right">
-              <h3 className="text-3xl font-bold text-gray-800">📜 Official Recognition</h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                With dedication and persistence, OMT was officially recognized as a <strong>non-profit organization</strong> by the <strong>State of California</strong> and the <strong>IRS</strong>, moving one step closer to its mission.
-              </p>
-            </div>
-            <div className="space-y-6" data-aos="fade-left">
-              <h3 className="text-3xl font-bold text-gray-800">🛕 Vision for the Temple</h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                We envision a <strong>Traditional Hindu Temple and Cultural Center</strong> in the Roseville/Rocklin/Lincoln area, starting with acquiring <strong>6 acres</strong> of land and building <strong>Phase-1</strong> of a spiritual center for generations.
-              </p>
-            </div>
+          {/* Trust Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
+            {[
+              {
+                Icon: ShieldCheck,
+                title: "Trusted Non-Profit",
+                desc: "Recognized by State of California & IRS",
+                color: "text-orange-500",
+              },
+              {
+                Icon: Heart,
+                title: "Transparent Donations",
+                desc: "Every dollar goes to land & construction",
+                color: "text-red-500",
+              },
+              {
+                Icon: Users,
+                title: "Community Driven",
+                desc: "Built for and by the Hindu community",
+                color: "text-yellow-500",
+              },
+            ].map(({ Icon, title, desc, color }, i) => (
+              <div
+                key={i}
+                className="p-8 bg-white rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1"
+                data-aos="fade-up"
+                data-aos-delay={i * 150}
+              >
+                <Icon className={`w-12 h-12 mx-auto mb-4 ${color}`} />
+                <h4 className="text-lg font-bold text-gray-800 mb-2">{title}</h4>
+                <p className="text-gray-600 text-sm">{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Donate Call to Action */}
-      <section className="w-full bg-gradient-to-b from-orange-50 to-yellow-50 shadow-xl py-16 text-center" data-aos="fade-up">
-        <div className="max-w-6xl mx-auto px-4">
-          <h3 className="text-3xl md:text-4xl font-extrabold text-orange-800 flex items-center justify-center gap-3 mb-4">
-            Support Our Cultural Heritage
-          </h3>
-          <p className="text-gray-700 text-lg max-w-2xl mx-auto mb-8">
-            Join us in preserving sacred traditions and expanding spiritual services. Every donation brings us one step closer to our divine mission.
-          </p>
-          <button
-            onClick={() => window.open("https://tinyurl.com/OMT-Land-donation", "_blank")}
-            className="bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-700 hover:to-orange-600 text-white font-semibold px-10 py-4 rounded-full text-lg shadow-md transition duration-300"
-          >
-            Donate via Zeffy
-          </button>
-
-        </div>
+      {/* Final CTA */}
+      <section className="py-20 bg-gradient-to-r from-orange-100 via-yellow-50 to-white text-center" data-aos="fade-up">
+        <h3 className="text-3xl md:text-4xl font-extrabold text-orange-800 mb-4">
+          Support Our Cultural Heritage
+        </h3>
+        <p className="text-gray-700 text-lg max-w-2xl mx-auto mb-8">
+          Every donation brings us closer to our dream temple. Be part of history.
+        </p>
+        <button
+          onClick={() => window.open("https://tinyurl.com/OMT-Land-donation", "_blank")}
+          className="bg-gradient-to-r from-red-600 to-orange-500 hover:scale-105 text-white font-semibold px-12 py-4 rounded-full text-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 mx-auto"
+        >
+          <Heart className="w-6 h-6" /> Donate Now
+        </button>
       </section>
-    </>
+    </div>
   );
 };
 

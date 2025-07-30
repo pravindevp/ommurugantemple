@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const About = () => {
+const Board = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
@@ -49,13 +49,13 @@ const About = () => {
     >
       <div className="container mx-auto px-6 md:px-12 text-center">
         {/* Title */}
-        <h2
+        {/* <h2
           className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4"
           data-aos="fade-down"
         >
           About Us
-        </h2>
-        <div className="w-28 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-12 rounded-full"></div>
+        </h2> */}
+        {/* <div className="w-28 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-12 rounded-full"></div> */}
 
         {/* Trustees Section */}
         <div className="mb-20">
@@ -87,4 +87,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Board;

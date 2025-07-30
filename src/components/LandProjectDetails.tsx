@@ -1,118 +1,151 @@
-import React from 'react';
-import { Progress } from '@material-tailwind/react';
+import React, { useEffect } from 'react';
 import { MapPin, DollarSign, Landmark } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+const phases = [
+  {
+    phase: 1,
+    title: "A New Beginning – Foundation of New Hindu Temple",
+    timeline: "1 to 6 Months (Aug 2025)",
+    goal: 600000,
+    raised: 10000,
+    pledged: 200000,
+    targetDate: "Aug 2025",
+    details: [
+      "Purchase a land of 3 to 6 acres – Update Jun 2025: Identified the land and working with Landlord",
+      "Open space Spiritual Temple",
+      "Bring Vigraghams (Idols) to Temple",
+      "The Temple will open to devotees",
+      "Everyday Morning and Evening Prayers",
+    ],
+    color: "from-yellow-100 to-orange-50",
+  },
+  {
+    phase: 2,
+    title: "A New Permanent Land – Traditional Hindu Temple",
+    timeline: "7 months to 36 Months (Oct 2028)",
+    goal: 1800000,
+    raised: 0,
+    pledged: 0,
+    targetDate: "Oct 2028",
+    details: [
+      "Sannidhis and Vigraghams to be carved",
+      "Design concepts and detailed master plan for the property – which describes how the new temple will be built",
+      "Obtain Site Clearance Certificate",
+      "Finalize General Contractor",
+      "Obtain Building Permit from City",
+    ],
+    color: "from-orange-100 to-yellow-50",
+  },
+  {
+    phase: 3,
+    title: "A New Reality – Divine Blessings for a Divine",
+    timeline: "37 months to 60 Months (Oct 2030)",
+    goal: 3600000,
+    raised: 0,
+    pledged: 0,
+    targetDate: "Oct 2030",
+    details: [
+      "Ground Breaking – OM Murugan Temple – Our Focus is on The Main Temple Building",
+      "Phase 3.1: Several smaller Temples or Sannidhanams are structured within the Main Temple",
+      "Phase 3.2: Begin Construction – Learning Center, Cultural and Dining Halls",
+      "Phase 3.3: Buildout of front area of temple, vestibule, office, coat, concrete towers, porches, and floors",
+    ],
+    color: "from-yellow-50 to-orange-50",
+  },
+];
 
 const LandProjectDetails = () => {
-  const totalPledged = 318010;
-  const target = 600000;
-  const percentage = Math.round((totalPledged / target) * 100);
-
-  const trustees = ['Shiva Sundaram', 'Karthik Sekar', 'Lakshmi Ramesh'];
-  const donors = [
-    ...trustees,
-    'Priya Patel',
-    'Ravi Chandran',
-    'Meena Iyer',
-    'Arun Subramanian'
-  ];
+  useEffect(() => {
+    AOS.init({
+      duration: 800, // Animation duration
+      once: true,    // Trigger animation only once
+      offset: 100,   // Offset before animation starts
+    });
+  }, []);
 
   return (
-    <div className="bg-gradient-to-br from-yellow-50 to-orange-100 p-10 rounded-3xl max-w-6xl mx-auto shadow-xl border border-orange-200">
-      
-      {/* Title */}
-      <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-orange-800 mb-4">
-          🏛️ Permanent Temple Land Project
-        </h1>
-        <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-          With Lord OM Murugan’s blessings, we have identified land in Lincoln, CA for a traditional temple. Let's unite and bring this vision to life.
-        </p>
-      </div>
+    <div className="bg-gradient-to-br from-white-50 to-orange-100 p-10 mx-auto shadow-xl border border-orange-200 font-montserrat">
+      {/* Header */}
+      <h2 
+        className="text-4xl font-extrabold text-center text-orange-700 mb-12 drop-shadow-md"
+        data-aos="fade-down"
+      >
+        🛕 Temple Land Project Phases
+      </h2>
 
-      {/* Progress Section */}
-      <div className="bg-white rounded-2xl shadow-md p-6 mb-8">
-        <h2 className="text-2xl font-semibold text-green-800 mb-3 flex items-center gap-2">
-          <DollarSign className="text-green-600 w-6 h-6" /> Project Progress
-        </h2>
-        <p className="text-lg font-medium text-gray-800 mb-1">
-          ${totalPledged.toLocaleString()} pledged of ${target.toLocaleString()}
-        </p>
-        <Progress
-          value={percentage}
-          className="h-3"
-          color="orange"
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-          placeholder=""
-        />
-        <p className="text-sm text-gray-600 mt-2">{percentage}% funded</p>
-      </div>
+      {/* Phases */}
+      <div className="space-y-12">
+        {phases.map((phaseData, index) => {
+          const progressPercent = (phaseData.raised / phaseData.goal) * 100;
+          const pledgedPercent = (phaseData.pledged / phaseData.goal) * 100;
 
-      {/* Details Section */}
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl shadow p-6">
-          <h3 className="text-xl font-semibold text-orange-700 mb-3 flex items-center gap-2">
-            <MapPin className="text-red-500" /> Land Details
-          </h3>
-          <ul className="space-y-2 text-gray-700">
-            <li><strong>Location:</strong> Lincoln, CA</li>
-            <li><strong>Land Size:</strong> 6 Acres</li>
-            <li><strong>Total Project Cost:</strong> $6M USD</li>
-            <li><strong>Land Cost:</strong> $600K USD</li>
-            <li><strong>Construction Cost:</strong> $5.4M USD</li>
-            <li><strong>Escrow Date:</strong> Sep 30, 2025</li>
-          </ul>
-        </div>
+          return (
+            <div
+              key={index}
+              className={`p-8 rounded-3xl bg-gradient-to-br ${phaseData.color} shadow-lg border border-orange-200`}
+              data-aos="fade-up"
+              data-aos-delay={index * 150} // staggered animation
+            >
+              {/* Phase Header */}
+              <div className="flex flex-col md:flex-row justify-between md:items-center mb-4">
+                <h3 
+                  className="text-2xl font-bold text-orange-800 flex items-center gap-3"
+                  data-aos="fade-right"
+                  data-aos-delay={index * 150 + 100}
+                >
+                  <Landmark className="w-7 h-7 text-orange-600" />
+                  Phase {phaseData.phase}: {phaseData.title}
+                </h3>
+                <p 
+                  className="text-sm text-gray-600 italic mt-2 md:mt-0"
+                  data-aos="fade-left"
+                  data-aos-delay={index * 150 + 150}
+                >
+                  ⏳ Timeline: {phaseData.timeline}
+                </p>
+              </div>
 
-        <div className="bg-white rounded-xl shadow p-6">
-          <h3 className="text-xl font-semibold text-orange-700 mb-3">💸 Donation Methods</h3>
-          <ul className="list-disc ml-5 space-y-2 text-gray-700">
-            <li>
-              Zeffy: <a href="https://tinyurl.com/OMT-Land-donation" target="_blank" rel="noreferrer" className="text-blue-600 underline">OMT Land Donation</a>
-            </li>
-            <li>Zelle: <span className="text-sm">californiaomurugantemple@gmail.com</span></li>
-            <li>Check: <strong>Payable to "California OM Murugan Temple"</strong></li>
-            <li>Employer Matching via Benevity/Cybergrants</li>
-            <li>Wire Transfer available</li>
-          </ul>
-        </div>
-      </div>
+              {/* Details */}
+              <ul 
+                className="list-disc list-inside text-gray-700 space-y-1 mb-6"
+                data-aos="fade-up"
+                data-aos-delay={index * 150 + 200}
+              >
+                {phaseData.details.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
 
-      {/* SQFT Donation */}
-      <div className="bg-white rounded-xl shadow p-6 mt-8">
-        <h3 className="text-xl font-semibold text-orange-700 mb-3">📏 Land Donation (Square Feet)</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-gray-700 font-medium">
-          <div>10 SQFT – <span className="text-green-700">$1,001</span></div>
-          <div>25 SQFT – <span className="text-green-700">$2,500</span></div>
-          <div>50 SQFT – <span className="text-green-700">$5,001</span></div>
-          <div>100 SQFT – <span className="text-green-700">$10,001</span></div>
-        </div>
-        <p className="mt-4 text-orange-700 italic">
-          Donate and have your name honored on our Temple’s Donor Wall.
-        </p>
-      </div>
-
-      {/* Donors Section */}
-      <div className="bg-white rounded-xl shadow p-6 mt-8">
-        <h3 className="text-xl font-semibold text-orange-700 mb-4">🙌 Our Donors</h3>
-        <div className="grid md:grid-cols-2 gap-6 text-gray-700">
-          <div>
-            <h4 className="text-orange-600 font-bold text-lg mb-2">🌟 Trustees</h4>
-            <ul className="list-disc ml-5 space-y-1">
-              {trustees.map((name, idx) => (
-                <li key={idx}>{name}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-green-700 font-bold text-lg mb-2">🙏 Donors</h4>
-            <ul className="list-disc ml-5 space-y-1">
-              {donors.slice(trustees.length).map((name, idx) => (
-                <li key={idx}>{name}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
+              {/* Progress Section */}
+              <div className="mb-4" data-aos="zoom-in" data-aos-delay={index * 150 + 300}>
+                <div className="flex justify-between items-center mb-2 text-sm text-gray-600">
+                  <span>
+                    <DollarSign className="inline w-4 h-4 text-green-600" /> Raised: ${phaseData.raised.toLocaleString()}
+                  </span>
+                  <span>Target: ${phaseData.goal.toLocaleString()} by {phaseData.targetDate}</span>
+                </div>
+                <div className="relative w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
+                  {/* Pledged portion */}
+                  <div
+                    className="absolute top-0 left-0 h-4 bg-yellow-400"
+                    style={{ width: `${Math.min(pledgedPercent, 100)}%` }}
+                  ></div>
+                  {/* Raised portion */}
+                  <div
+                    className="absolute top-0 left-0 h-4 bg-red-500"
+                    style={{ width: `${Math.min(progressPercent, 100)}%` }}
+                  ></div>
+                </div>
+                <div className="flex justify-between mt-1 text-xs text-gray-500">
+                  <span>Pledged: ${phaseData.pledged.toLocaleString()}</span>
+                  <span>{phaseData.targetDate}</span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
