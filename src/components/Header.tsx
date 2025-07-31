@@ -136,17 +136,21 @@ const Header = () => {
               {navItems.map((item) => (
                 <div key={item.name}>
                   <Link
-                    to={item.path}
-                    onClick={() => {
-                      if (!item.submenu) setIsMenuOpen(false);
-                    }}
-                    className={`block text-base font-medium transition duration-300 ${item.name === "Donate Now"
+                  to={item.path}
+                  onClick={(e) => {
+                    if (item.name === "Donate Now") {
+                      e.preventDefault(); // Stop normal navigation
+                      window.open("https://tinyurl.com/OMT-Land-donation", "_blank");
+                    }
+                    if (!item.submenu) setIsMenuOpen(false);
+                  }}
+                  className={`block text-base font-medium transition duration-300 ${item.name === "Donate Now"
                       ? "bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 shadow-md text-center animate-bounce"
                       : "text-gray-700 hover:text-orange-600"
-                      }`}
-                  >
-                    {item.name}
-                  </Link>
+                    }`}
+                >
+                  {item.name}
+                </Link>
 
                   {/* Mobile Submenu */}
                   {item.submenu && (
