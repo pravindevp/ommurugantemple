@@ -1,36 +1,40 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import BgImage from "../Asset/img/landdetails.jpg"; // Update if needed
+import temple from "../Asset/img/templedesign.png"; // Update if needed
+import CommunityFundraising from "../Asset/img/CommunityFundraising.png"; // Update if needed
 
 // Sample News Data
 const newsData = [
   {
     id: 1,
-    title: "Temple Land Acquisition Completed",
+    title: "Temple Land Acquisition",
     date: "15 July 2025",
     description:
       "We are delighted to announce the successful acquisition of 6 acres of land for our upcoming temple and cultural center.",
-    image: "https://source.unsplash.com/600x400/?temple,land",
+    image: BgImage,
     link: "#",
   },
   {
     id: 2,
-    title: "Annual Cultural Festival Announced",
-    date: "02 August 2025",
+    title: "Temple Design Revealed",
+    date: "20 July 2025",
     description:
-      "Join us for our grand cultural festival featuring music, dance, and devotional performances celebrating our heritage.",
-    image: "https://source.unsplash.com/600x400/?festival,india",
+      "We are excited to unveil the blueprint of our upcoming temple, showcasing its traditional architecture and cultural significance.",
+    image: temple,
     link: "#",
   },
   {
     id: 3,
-    title: "Community Fundraiser Success",
+    title: "Community Fundraising Reaches $52,389",
     date: "20 June 2025",
     description:
-      "Thanks to our community, we raised over $150,000 in our recent fundraiser for temple construction.",
-    image: "https://source.unsplash.com/600x400/?hindu,donation",
+      "Thanks to the generous support of our community, we have successfully raised $52,389 towards the construction of our temple and cultural center.",
+    image: CommunityFundraising, // Only the image variable, no <img> here
     link: "#",
   },
+
 ];
 
 const News = () => {
@@ -60,13 +64,17 @@ const News = () => {
               key={news.id}
               className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300"
               data-aos="fade-up"
-              data-aos-delay={index * 100}
+              data-aos-delay={index * 150}
             >
+              {/* News Image */}
               <img
                 src={news.image}
                 alt={news.title}
-                className="w-full h-56 object-cover"
+                loading="lazy"
+  className="w-full h-48 sm:h-56 lg:h-64 object-cover"
               />
+
+              {/* News Content */}
               <div className="p-6">
                 <p className="text-sm text-orange-600 font-medium mb-2">
                   {news.date}
@@ -77,6 +85,8 @@ const News = () => {
                 <p className="text-gray-600 mb-4">{news.description}</p>
                 <a
                   href={news.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-red-600 font-semibold hover:underline"
                 >
                   Read More →

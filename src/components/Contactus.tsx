@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Contactus = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +11,10 @@ const Contactus = () => {
     subject: '',
     message: ''
   });
+
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -34,29 +40,32 @@ const Contactus = () => {
     {
       icon: Phone,
       title: 'Phone Numbers',
-      details: ['Main: +9 123456789', 'Office: +123456987'],
+      details: [' +9 123456789'],
       color: 'from-orange-500 to-yellow-500'
     },
     {
       icon: Mail,
       title: 'Email Addresses',
-      details: ['info@ommurugantemple.org', 'donations@ommurugantemple.org'],
+      details: ['info@ommurugantempleca.org'],
       color: 'from-red-600 to-pink-500'
     }
   ];
 
   const departments = [
-    { name: 'General Inquiries', email: 'info@srimurugantemple.org' },
-    { name: 'Pooja Bookings', email: 'pooja@srimurugantemple.org' },
-    { name: 'Event Coordination', email: 'events@srimurugantemple.org' },
-    { name: 'Donations & Accounts', email: 'donations@srimurugantemple.org' },
-    { name: 'Cultural Programs', email: 'culture@srimurugantemple.org' }
+    { name: 'General Inquiries', email: 'info@ommurugantempleca.org' },
+    { name: 'Pooja Bookings', email: 'info@ommurugantempleca.org' },
+    { name: 'Event Coordination', email: 'info@ommurugantempleca.org' },
+    { name: 'Donations & Accounts', email: 'info@ommurugantempleca.org' },
+    { name: 'Cultural Programs', email: 'info@ommurugantempleca.org' }
   ];
 
   return (
-    <div className="py-12 bg-gray-50">
+    <div className="py-12 bg-gray-50 font-montserrat">
       {/* Hero Section */}
-      <section className="relative h-72 flex items-center justify-center mb-16 font-montserrat">
+      <section
+        className="relative h-72 flex items-center justify-center mb-16"
+        data-aos="fade-down"
+      >
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -80,7 +89,7 @@ const Contactus = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Contact Information Cards */}
         <section className="mb-16">
-          <div className="text-center mb-10">
+          <div className="text-center mb-10" data-aos="fade-up">
             <h2 className="text-3xl font-extrabold text-red-800 mb-4">
               Get in Touch
             </h2>
@@ -96,6 +105,8 @@ const Contactus = () => {
                 <div
                   key={index}
                   className="bg-white rounded-xl shadow-lg hover:shadow-xl p-8 text-center transition-transform duration-300 hover:-translate-y-1"
+                  data-aos="zoom-in"
+                  data-aos-delay={index * 150}
                 >
                   <div
                     className={`w-16 h-16 bg-gradient-to-br ${info.color} rounded-full mx-auto mb-4 flex items-center justify-center shadow-md`}
@@ -121,7 +132,10 @@ const Contactus = () => {
         {/* Contact Form and Map */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+          <div
+            className="bg-white rounded-xl shadow-lg p-8 border border-gray-100"
+            data-aos="fade-right"
+          >
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center">
                 <MessageCircle className="text-white" size={24} />
@@ -172,6 +186,7 @@ const Contactus = () => {
                   <option value="">Select Subject</option>
                   <option value="general">General Inquiry</option>
                   <option value="pooja">Pooja Booking</option>
+                  <option value="loan">Loan Program</option>
                   <option value="event">Event Information</option>
                   <option value="donation">Donation Query</option>
                   <option value="volunteer">Volunteer Opportunity</option>
@@ -200,7 +215,7 @@ const Contactus = () => {
           </div>
 
           {/* Map and Departments */}
-          <div className="space-y-8">
+          <div className="space-y-8" data-aos="fade-left">
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
               <div className="h-64 bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center">
                 <div className="text-center">
@@ -236,6 +251,8 @@ const Contactus = () => {
                   <div
                     key={index}
                     className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0"
+                    data-aos="fade-up"
+                    data-aos-delay={index * 100}
                   >
                     <span className="text-gray-800 font-medium text-sm">
                       {dept.name}
@@ -254,7 +271,10 @@ const Contactus = () => {
         </div>
 
         {/* Office Hours */}
-        <section className="mt-16 bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+        <section
+          className="mt-16 bg-white rounded-xl shadow-lg p-8 border border-gray-100"
+          data-aos="fade-up"
+        >
           <div className="text-center mb-10">
             <h2 className="text-3xl font-extrabold text-red-800 mb-4">
               Office Hours & Services
@@ -266,11 +286,26 @@ const Contactus = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: 'Weekdays', time1: 'Monday - Friday', time2: '9:00 AM - 6:00 PM', color: 'from-red-500 to-orange-500' },
-              { title: 'Weekends', time1: 'Saturday - Sunday', time2: '8:00 AM - 8:00 PM', color: 'from-orange-500 to-yellow-500' },
-              { title: 'Festivals', time1: 'Special Days', time2: 'Extended Hours', color: 'from-red-600 to-pink-500' }
+              {
+                title: 'Weekdays',
+                time1: 'Monday - Friday',
+                time2: '9:00 AM - 6:00 PM',
+                color: 'from-red-500 to-orange-500'
+              },
+              {
+                title: 'Weekends',
+                time1: 'Saturday - Sunday',
+                time2: '8:00 AM - 8:00 PM',
+                color: 'from-orange-500 to-yellow-500'
+              },
+              {
+                title: 'Festivals',
+                time1: 'Special Days',
+                time2: 'Extended Hours',
+                color: 'from-red-600 to-pink-500'
+              }
             ].map((item, idx) => (
-              <div key={idx} className="text-center">
+              <div key={idx} className="text-center" data-aos="zoom-in" data-aos-delay={idx * 150}>
                 <div
                   className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-full mx-auto mb-4 flex items-center justify-center`}
                 >

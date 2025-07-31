@@ -11,6 +11,7 @@ import Contactus from './components/Contactus';
 import Loanprogram from './components/loanprogram';
 import Deities from './components/Deities ';
 import Board from './components/Board';
+import Bylaws from './components/Bylaws';
 
 import LandProjectDetails from './components/LandProjectDetails';
 
@@ -31,7 +32,7 @@ const App = () => {
         <Route path="/loanprogram" element={<Loanprogram />} />
         <Route path="/Deities" element={<Deities />} />
         <Route path="/Board" element={<Board />} />
-
+        <Route path="/Bylaws" element={<Bylaws />} />
       </Routes>
 
       <Footer />

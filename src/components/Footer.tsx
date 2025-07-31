@@ -48,11 +48,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="text-orange-500" size={18} />
-                <span className="text-gray-300"></span>
+                <span className="text-gray-300">(XXX) XXX-XXXX</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="text-orange-500" size={18} />
-                <span className="text-gray-300"></span>
+                <span className="text-gray-300">info@ommurugantempleca.org</span>
               </div>
             </div>
           </div>
@@ -95,18 +95,12 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-6 text-orange-400">Temple Hours</h4>
             <div className="space-y-3 mb-8">
-              <div className="flex justify-between">
-                <span className="text-gray-300">Daily Darshan:</span>
-                <span className="text-white">6:00 AM - 8:00 PM</span>
-              </div>
+             
               <div className="flex justify-between">
                 <span className="text-gray-300">Office Hours:</span>
                 <span className="text-white">9:00 AM - 5:00 PM</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-300">Weekend:</span>
-                <span className="text-white">Open Daily</span>
-              </div>
+              
             </div>
 
             <h4 className="text-lg font-bold mb-4 text-orange-400">Follow Us</h4>
@@ -130,7 +124,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm">
-              © 2024 Om Murugan Temple California. All rights reserved.
+              © 2025 Om Murugan Temple California. All rights reserved.
             </div>
             <div className="flex items-center space-x-4 text-sm">
               <a href="#" className="text-gray-400 hover:text-orange-400 transition-colors">
