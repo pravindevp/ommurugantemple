@@ -86,16 +86,21 @@ const Header = () => {
               <div key={item.name} className="relative group">
                 <Link
                   to={item.path}
-                  onClick={() =>
-                    window.open("https://tinyurl.com/OMT-Land-donation", "_blank")
-                  }
-                  className={`text-base font-semibold transition-all duration-300 ${item.name === "Donate Now"
-                      ? "bg-orange-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-orange-600 hover:shadow-lg animate-pulse"
-                      : "text-gray-700 hover:text-orange-600 hover:scale-105"
+                  onClick={(e) => {
+                    if (item.name === "Donate Now") {
+                      e.preventDefault(); // Stop normal navigation
+                      window.open("https://tinyurl.com/OMT-Land-donation", "_blank");
+                    }
+                    if (!item.submenu) setIsMenuOpen(false);
+                  }}
+                  className={`block text-base font-medium transition duration-300 ${item.name === "Donate Now"
+                      ? "bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 shadow-md text-center animate-bounce"
+                      : "text-gray-700 hover:text-orange-600"
                     }`}
                 >
                   {item.name}
                 </Link>
+
 
                 {/* Desktop Dropdown */}
                 {item.submenu && (
@@ -136,8 +141,8 @@ const Header = () => {
                       if (!item.submenu) setIsMenuOpen(false);
                     }}
                     className={`block text-base font-medium transition duration-300 ${item.name === "Donate Now"
-                        ? "bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 shadow-md text-center animate-bounce"
-                        : "text-gray-700 hover:text-orange-600"
+                      ? "bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 shadow-md text-center animate-bounce"
+                      : "text-gray-700 hover:text-orange-600"
                       }`}
                   >
                     {item.name}
