@@ -82,7 +82,7 @@ const LoanProgram = () => {
           <h4 className="text-xl font-semibold text-red-700 mb-2">Illustrative Example</h4>
           <p className="text-gray-700 leading-relaxed">
             A loan of <strong>$10,000 USD</strong> would have savings of approximately{" "}
-            <strong>$637 USD</strong> over a 1-year period (at 6% interest).
+            <strong>$600 USD</strong> over a 1-year period (at 6% interest).
           </p>
         </div>
 
@@ -94,10 +94,10 @@ const LoanProgram = () => {
         <p className="text-gray-700 leading-relaxed mb-8" data-aos="fade-up" data-aos-delay="550">
           Please reach us at{" "}
           <a
-            href="mailto:ommurugantemple@gmail.com"
+            href="mailto:info@ommurugantempleca.org"
             className="text-orange-600 font-semibold hover:underline"
           >
-            ommurugantemple@gmail.com
+           info@ommurugantempleca.org
           </a>{" "}
           if you are willing to support this program and help the Temple meet the{" "}
           <strong>September 30th land escrow date</strong>.

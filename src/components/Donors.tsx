@@ -4,8 +4,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const trustees = [
-  { name: "Sridevi, Sankar Dandabany & Family", pledged: 50001, donated: 5001 },
   { name: "Kavita, Mohan Arunachalam & Family", pledged: 123000, donated: 12514 },
+  { name: "Sridevi, Sankar Dandabany & Family", pledged: 50001, donated: 5001 },
   { name: "Nalini, Vasanthakumar Padmanaban & Family", pledged: 50001, donated: 303 },
 ];
 
