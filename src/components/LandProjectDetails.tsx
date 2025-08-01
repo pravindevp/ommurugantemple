@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { MapPin, DollarSign, Landmark } from 'lucide-react';
+import { DollarSign, Landmark } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -59,17 +59,17 @@ const phases = [
 const LandProjectDetails = () => {
   useEffect(() => {
     AOS.init({
-      duration: 800, // Animation duration
-      once: true,    // Trigger animation only once
-      offset: 100,   // Offset before animation starts
+      duration: 800,
+      once: true,
+      offset: 100,
     });
   }, []);
 
   return (
     <div className="bg-gradient-to-br from-white-50 to-orange-100 p-10 mx-auto shadow-xl border border-orange-200 font-montserrat">
       {/* Header */}
-      <h2 
-        className="text-4xl font-extrabold text-center text-orange-700 mb-12 drop-shadow-md"
+      <h2
+        className="text-3xl sm:text-4xl font-extrabold text-center text-orange-700 mb-12 drop-shadow-md"
         data-aos="fade-down"
       >
         🛕 Temple Land Project Phases
@@ -86,11 +86,11 @@ const LandProjectDetails = () => {
               key={index}
               className={`p-8 rounded-3xl bg-gradient-to-br ${phaseData.color} shadow-lg border border-orange-200`}
               data-aos="fade-up"
-              data-aos-delay={index * 150} // staggered animation
+              data-aos-delay={index * 150}
             >
               {/* Phase Header */}
               <div className="flex flex-col md:flex-row justify-between md:items-center mb-4">
-                <h3 
+                <h3
                   className="text-2xl font-bold text-orange-800 flex items-center gap-3"
                   data-aos="fade-right"
                   data-aos-delay={index * 150 + 100}
@@ -98,7 +98,7 @@ const LandProjectDetails = () => {
                   <Landmark className="w-7 h-7 text-orange-600" />
                   Phase {phaseData.phase}: {phaseData.title}
                 </h3>
-                <p 
+                <p
                   className="text-sm text-gray-600 italic mt-2 md:mt-0"
                   data-aos="fade-left"
                   data-aos-delay={index * 150 + 150}
@@ -108,7 +108,7 @@ const LandProjectDetails = () => {
               </div>
 
               {/* Details */}
-              <ul 
+              <ul
                 className="list-disc list-inside text-gray-700 space-y-1 mb-6"
                 data-aos="fade-up"
                 data-aos-delay={index * 150 + 200}
@@ -120,27 +120,43 @@ const LandProjectDetails = () => {
 
               {/* Progress Section */}
               <div className="mb-4" data-aos="zoom-in" data-aos-delay={index * 150 + 300}>
-                <div className="flex justify-between items-center mb-2 text-sm text-gray-600">
-                  <span>
-                    <DollarSign className="inline w-4 h-4 text-green-600" /> Raised: ${phaseData.raised.toLocaleString()}
+                {/* Legend */}
+                <div className="flex gap-4 text-xs mb-2">
+                  <span className="flex items-center gap-1">
+                    <span className="w-3 h-3 bg-red-500 rounded-full inline-block"></span> Raised
                   </span>
-                  <span>Target: ${phaseData.goal.toLocaleString()} by {phaseData.targetDate}</span>
+                  <span className="flex items-center gap-1">
+                    <span className="w-3 h-3 bg-yellow-400 rounded-full inline-block"></span> Pledged
+                  </span>
                 </div>
+
+                {/* Progress Bar */}
                 <div className="relative w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
-                  {/* Pledged portion */}
                   <div
                     className="absolute top-0 left-0 h-4 bg-yellow-400"
                     style={{ width: `${Math.min(pledgedPercent, 100)}%` }}
+                    title={`Pledged: $${phaseData.pledged.toLocaleString()}`}
                   ></div>
-                  {/* Raised portion */}
                   <div
                     className="absolute top-0 left-0 h-4 bg-red-500"
                     style={{ width: `${Math.min(progressPercent, 100)}%` }}
+                    title={`Raised: $${phaseData.raised.toLocaleString()}`}
                   ></div>
                 </div>
-                <div className="flex justify-between mt-1 text-xs text-gray-500">
+
+                {/* Percentages */}
+                <div className="flex justify-between text-xs mt-1 text-gray-600">
+                  <span>Pledged: {pledgedPercent.toFixed(1)}%</span>
+                  <span>Raised: {progressPercent.toFixed(1)}%</span>
+                </div>
+
+                
+
+                {/* Amounts */}
+                <div className="flex justify-between mt-2 text-xs text-gray-500">
                   <span>Pledged: ${phaseData.pledged.toLocaleString()}</span>
-                  <span>{phaseData.targetDate}</span>
+                  <span>Raised: ${phaseData.raised.toLocaleString()}</span>
+                  <span>Target: ${phaseData.goal.toLocaleString()} by {phaseData.targetDate}</span>
                 </div>
               </div>
             </div>

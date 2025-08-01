@@ -13,10 +13,8 @@ const Header = () => {
 
       submenu: [
         { name: "Deities", path: "/Deities" },
-        { name: "Board", path: "/Board" },
-        // { name: "About Us", path: "/about#aboutus" },
-
-        { name: "Gallery", path: "/about#gallery" },
+        { name: "Our Team", path: "/Board" },
+        { name: "By Laws", path: "/Bylaws" },
       ],
     },
     { name: "Donors", path: "/donors" },
@@ -30,7 +28,7 @@ const Header = () => {
     },
     { name: "News", path: "/News" },
     { name: "Contact Us", path: "/contactus" },
-    { name: "Donate Now", path: "/donate" },
+    { name: "Donate Now", path: "/" },
   ];
 
   return (
@@ -49,7 +47,7 @@ const Header = () => {
             </div>
           </div>
           <div className="text-amber-200 mt-2 md:mt-0">
-            Daily Darshan: 6:00 AM - 8:00 PM
+          
           </div>
         </div>
       </div>

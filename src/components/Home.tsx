@@ -4,8 +4,7 @@ import "aos/dist/aos.css";
 import { Heart, ShieldCheck, Users } from "lucide-react";
 import templedesign1 from "../Asset/img/backgound.png";
 import templedesign2 from "../Asset/img/temple_ai_2.png";
-import templedesign3 from "../Asset/img/murugan-malaysia-statue.jpg";
-import ChatBox from "./chatbox";
+import templedesign3 from "../Asset/img/templedesign.png";
 
 const Home = () => {
   const images = [templedesign1, templedesign2, templedesign3];
@@ -39,11 +38,12 @@ const Home = () => {
       <section
         className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-black mt-20 bg-cover bg-center transition-all duration-1000"
         style={{ backgroundImage: `url(${images[currentIndex]})` }}
-      >        <img
+      >      <img
           src={images[currentIndex]}
           alt="Temple"
-          className="absolute inset-0 object-center w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+          className="absolute inset-0 w-full h-full object-fill transition-opacity duration-1000 ease-in-out"
         />
+
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
         {currentIndex === 0 && (
@@ -124,7 +124,7 @@ const Home = () => {
           </p>
 
           {/* Mission Card */}
-          <div className="bg-white/80 backdrop-blur-md rounded-2xl p-10 md:p-14 text-left max-w-4xl mx-auto shadow-lg hover:shadow-2xl transition">
+          <div className="bg-white/80 backdrop-blur-md rounded-2xl p-10 md:p-14 text-left max-w-6xl mx-auto shadow-lg hover:shadow-2xl transition">
             <p className="text-gray-700 leading-relaxed mb-5">
               OMT was established in 2019 to serve the growing Hindu community in
               Roseville, Rocklin, and Lincoln. Recognized as a{" "}
@@ -166,7 +166,7 @@ const Home = () => {
               {
                 Icon: Users,
                 title: "Community Driven",
-                desc: "Built for and by the Hindu community",
+                desc: "Built by the Community, for the Community",
                 color: "text-yellow-500",
               },
             ].map(({ Icon, title, desc, color }, i) => (

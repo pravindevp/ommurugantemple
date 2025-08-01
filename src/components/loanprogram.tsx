@@ -3,6 +3,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 
+import { Link } from "react-router-dom";
+
 const LoanProgram = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true }); // Animate once
@@ -34,7 +36,7 @@ const LoanProgram = () => {
 
         {/* Blessings and Intro */}
         <p className="text-gray-700 leading-relaxed mb-6" data-aos="fade-up" data-aos-delay="150">
-          Devotees,
+          Dear Devotees,
         </p>
         <p className="text-gray-700 leading-relaxed mb-6" data-aos="fade-up" data-aos-delay="200">
           May the Blessings of{" "}
@@ -111,13 +113,14 @@ const LoanProgram = () => {
 
         {/* CTA Button */}
         <div className="text-center mt-10" data-aos="fade-up" data-aos-delay="700">
-          <a
-            href="mailto:ommurugantemple@gmail.com"
+          <Link
+            to="/Contactus"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <Mail className="w-5 h-5" /> Contact Us to Support
-          </a>
+          </Link>
         </div>
+
       </div>
     </section>
   );
